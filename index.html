@@ -28,47 +28,68 @@
                         <button type="submit" 
                         class="btn btn-primary">Search
                         </button>
+                        <div>
+                            <ul id="lastSearches"></ul>
+                        </div>
                 </form>
             </aside>
-            <div class="col-9 d-flex flex-column">
+            <div class="col-8 d-flex flex-column">
                 <section id="cityData" class="row">
-                    <div class="d-flex flex-row">
-                        <h2 id="cityName">
-                            <span id="date"></span>
-                        </h2>
-                        
-                    </div>
-                    <p>Temp: <span id="temperature"></span></p>                    
+                    <p id="date1" class="datesSize"></p>
+                    <picture id="pic1"></picture>
+                    <p>Temp: <span id="temp1"></span></p>
+                    <p>Wind: <span id="wind1"></span></p>
+                    <p>Humidity: <span id="humidity1"></span></p>                  
                 </section>
                 <section id="forecast" class="row justify-content-between">
                     <h3>5-Day Forecast:</h3>
                     <div class="weatherBox">
                         <p id="date1" class="datesSize"></p>
-                        <p>Temp: <span id="temp1"></span></p>                        
+                        <picture id="pic1"></picture>
+                        <p>Temp: <span id="temp1"></span></p>
+                        <p>Wind: <span id="wind1"></span></p>
+                        <p>Humidity: <span id="humidity1"></span></p> 
+                                             
                     </div>
                     <div class="weatherBox">
-                        <p id="date2" class="datesSize"></p>
-                        <p>Temp: <span id="temp2"></span></p>                       
+                        <p id="date2"  class="row justify-content-between"></p>
+                        <picture id="pic2"></picture>
+                        <p>Temp: <span id="temp2"></span></p> 
+                        <p>Wind: <span id="wind2"></span></p>
+                        <p>Humidity: <span id="humidity2"></span></p>
+                        
                     </div>
                     <div class="weatherBox">
-                        <p id="date3" class="datesSize"></p>
-                        <p>Temp: <span id="temp3"></span></p>                    
+                        <p id="date3"  class="row justify-content-between"></p>
+                        <picture id="pic3"></picture>
+                        <p>Temp: <span id="temp3"></span></p>  
+                        <p>Wind: <span id="wind3"></span></p>
+                        <p>Humidity: <span id="humidity3"></span></p>
+                        
                     </div>
                     <div class="weatherBox">
-                        <p id="date4" class="datesSize"></p>
-                        <p>Temp: <span id="temp4"></span></p>                   
+                        <p id="date4"  class="row justify-content-between"></p>
+                        <picture id="pic4"></picture>
+                        <p>Temp: <span id="temp4"></span></p> 
+                        <p>Wind: <span id="wind4"></span></p>
+                        <p>Humidity: <span id="humidity4"></span></p>
+                        
                     </div>
                     <div class="weatherBox">
-                        <p id="date5" class="datesSize"></p>
-                        <p>Temp: <span id="temp5"></span></p>                    
+                        <p id="date5"  class="row justify-content-between"></p>
+                        <picture id="pic5"></picture>
+                        <p>Temp: <span id="temp5"></span></p>
+                        <p>Wind: <span id="wind5"></span></p>
+                        <p>Humidity: <span id="humidity5"></span></p>
+                        
                     </div>
                 
                 </section>
             </div>
 
-            <section 
+            <!-- <section 
             id="current-forecast">
-            </section>
+            </section> -->
 
         </div>
     </main>
