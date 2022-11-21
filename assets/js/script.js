@@ -1,23 +1,16 @@
 //VARIABLE DECLERATIONS
 var userInput = document.getElementById("user-input")
 var userForm = document.getElementById("form-sbt")
-// var dayForecast = document.getElementById("current-forecast")
-
+var lastSearchButtons = document.getElementById("lastSearches")
 var weatherAPI = 
 "http://api.openweathermap.org/data/2.5/forecast?";
 var APIkey = 
 "5fe44141691d9e8fa70ff348cd16290d"
-
 //function is responsible for getting the lat/lon for the city passed
 function fetchCoordinates(city){
-    //this will make the call to get the coordinates for that city
-var rootEndpoint = "http://api.openweathermap.org/geo/1.0/direct";
-
- 
+//this will make the call to get the coordinates for that city
+var rootEndpoint = "http://api.openweathermap.org/geo/1.0/direct"; 
 var apiCall = rootEndpoint + "?q=" + city + "&appid=" + APIkey;
-
- console.log(apiCall)
-
  fetch(apiCall)
  .then(function (response){
     return response.json();
@@ -26,9 +19,9 @@ var apiCall = rootEndpoint + "?q=" + city + "&appid=" + APIkey;
     var lat = data[0].lat;
     var lon = data[0].lon;
    fetchWeather(lat, lon);
-
  })
 }
+renderButtons();
 //function is reponsible for making api call with the user search term
 function fetchWeather(lat, lon){ 
     var apiCall = weatherAPI + 
@@ -39,31 +32,19 @@ function fetchWeather(lat, lon){
     .then(function (response) {
     return response.json();
 })
-    .then (function(data){
-    //take the temp and lets display to the user as an h1
-    
+    .then (function(data){    
     renderCards(data.list);
-    //append to DOM
 });
 };
+//getting informations from array
 function renderCards(info) {
-    // var h1El = document.createElement("h1")
-    // h1El.textContent = info[0].main.temp;
-    // dayForecast.append(h1El);
-    console.log(info);
     renderDayForecast(1, info[0]);
-    renderDayForecast(2, info[8]);
-    renderDayForecast(3, info[16]);
-    renderDayForecast(4, info[24]);
-    renderDayForecast(5, info[32]);
-    // var date = document.getElementById("date1")
-    // var temperatur = document.getElementById("temp1")
-    // var wind = document.getElementById("wind1")
-    // var humidity = document.getElementById("humidity1")
-    // temperatur.textContent = info[0].main.temp
-    // date.textContent = info[0].dt_txt
-    // wind.textContent = info[0].wind.speed
-    // humidity.textContent = info[0].main.humidity
+    renderDayForecast(2, info[7]);
+    renderDayForecast(3, info[15]);
+    renderDayForecast(4, info[23]);
+    renderDayForecast(5, info[31]);
+    renderDayForecast(6, info[39]);
+    document.getElementById("cityName");
 }
 function renderDayForecast(forecastDay, data){
     var date = document.getElementById("date" + forecastDay)
@@ -71,54 +52,55 @@ function renderDayForecast(forecastDay, data){
     var wind = document.getElementById("wind" + forecastDay)
     var humidity = document.getElementById("humidity" + forecastDay)
     var icon = document.getElementById("icon" + forecastDay)
+    var iconsrc = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+    icon.src = iconsrc
     temperatur.textContent = data.main.temp
     date.textContent = data.dt_txt
     wind.textContent = data.wind.speed
     humidity.textContent = data.main.humidity
-    // icon.textContent = data.weather.icon
 };
 //this function is responsible for form submission by capturing user input
 function handleFormSubmit(e) {
     e.preventDefault();
     var input = userInput.value
-
-//make an api call with that search term and confirm
-//data is sent back
-    //fetchWeather(input)
-
-    fetchCoordinates(input);  
+    if (input) {
+        fetchCoordinates(input);  
+    setLocalStorage(input);
+    }
 }
-
 //EVENT LISTENERS
-
 userForm.addEventListener("submit", handleFormSubmit);
-
-var lastSearchButtons = document.getElementById("lastSearches")
-function setLocalStorage(city){
-for (i = 0; i<cities.length; i++){
-    var cities = [];
+    function setLocalStorage(city){    
+    var cities;
+    cities = localStorage.getItem("city")   
+    if (cities == null){
+        cities = [];
+    } else{
+        cities = JSON.parse(cities)
+    }
     cities.push(city);
-    localStorage.setItem("city", cities)
+    localStorage.setItem("city", JSON.stringify(cities))
+    renderButtons();    
+    }
+    function clearRenderButtons (){
+        lastSearchButtons.innerHTML = ""
+    }
+    function renderButtons () {
+        var cities;
+    cities = localStorage.getItem("city") 
+    if (cities == null){
+        cities = [];
+    } else{
+        cities = JSON.parse(cities)
+    }
+        clearRenderButtons();
+for (i = 0; i<cities.length; i++){
+//creating button for last searches
     var button = document.createElement("button");
     button.textContent = cities[i];
-    lastSearchButtons.append(button);
-    button.setAttribute("onclick", `renderCards("${cities[i]}")`)
-}   
-    lastSearchButtons.addEventListener("click", getLocalStorage);
-    function getLocalStorage(){
-        lastSearchButtons.textContent = localStorage.getItem("cities");
+    button.addEventListener("click", (event)=> {
+        fetchCoordinates(event.target.innerHTML)
+    })
+    lastSearchButtons.appendChild(button);
+ }   
     }
-};
-    
-
-//local storage
-
-//create an empty array to that array
-
-//push that value (name of the city)
-
-// localStorage.setItem('cities', )
-// localStorage.setItem("cities", )
-
-//['austin', 'denver', 'seattle']
-

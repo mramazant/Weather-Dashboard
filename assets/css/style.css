@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+}
+
+
+
+
+#forecast{
+height: 100%;
+width: 100%;
+margin: auto;
+text-align: center;
+
+}
+
+#cityData{
+height: 150%;
+width: 100%;
+margin: auto;
+margin-top: 5%;
+border-top: 50%;
+text-align: center;
+justify-content: space-between;
+border-style: double;
+border-width: 70%;
+background-color: beige;
+
+
+}
+
+.infoBox{
+    background-color: rgb(126, 126, 167);
+    background-size: cover;
+    background-position: 150%;
+   }
+
+#date1 {
+    margin-left: 20%;
+}
+#date2 {
+    margin-left: 20%;
+}
+#date3 {
+    margin-left: 20%;
+}
+#date4 {
+    margin-left: 20%;
+}
+#date5 {
+    margin-left: 20%;
+}
