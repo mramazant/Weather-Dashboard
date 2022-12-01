@@ -3,13 +3,13 @@ var userInput = document.getElementById("user-input")
 var userForm = document.getElementById("form-sbt")
 var lastSearchButtons = document.getElementById("lastSearches")
 var weatherAPI = 
-"http://api.openweathermap.org/data/2.5/forecast?";
+"https://api.openweathermap.org/data/2.5/forecast?";
 var APIkey = 
 "5fe44141691d9e8fa70ff348cd16290d"
 //function is responsible for getting the lat/lon for the city passed
 function fetchCoordinates(city){
 //this will make the call to get the coordinates for that city
-var rootEndpoint = "http://api.openweathermap.org/geo/1.0/direct"; 
+var rootEndpoint = "https://api.openweathermap.org/geo/1.0/direct"; 
 var apiCall = rootEndpoint + "?q=" + city + "&appid=" + APIkey;
  fetch(apiCall)
  .then(function (response){
